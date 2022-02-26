@@ -8,6 +8,8 @@ async function main() {
     const username = os.userInfo().username;
     const hostname = os.hostname();
     const osInfo = await systeminfo.osInfo();
+
+    // Get hardware info
     const cpuInfo = await systeminfo.cpu();
     const gpuInfo = await systeminfo.graphics();
     const gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '').replace('AMD ', '');
