@@ -1,6 +1,6 @@
 {
   "name": "nodefetch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tool for displaying system information in a fancy way, using node.js",
   "main": "index.js",
   "scripts": {
