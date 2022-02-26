@@ -8,6 +8,7 @@ async function main() {
     const username = os.userInfo().username;
     const hostname = os.hostname();
     const osInfo = await systeminfo.osInfo();
+    const cpuInfo = await systeminfo.cpu();
     const memory = Math.round((os.totalmem - os.freemem) / 1048576 ) + 'M/' + Math.round(os.totalmem / 1048576) + 'M';
 
     // Generate separator based on the length of username@hostname
@@ -50,10 +51,11 @@ async function main() {
     console.log(asciiLogoLines[2] + `${osInfo.distro} ${osInfo.release}`);
     console.log(asciiLogoLines[3] + osInfo.kernel);
     console.log(asciiLogoLines[4] + `${de} ${deVer}`);
-    console.log(asciiLogoLines[5] + memory);
+    console.log(asciiLogoLines[5] + cpuInfo.brand);
+    console.log(asciiLogoLines[6] + memory);
 
     // Print the rest of the ascii
-    for(let i = 6; i < asciiLogoLines.length - 1; i++) {
+    for(let i = 7; i < asciiLogoLines.length - 1; i++) {
         console.log(asciiLogoLines[i]);
     }
 }
