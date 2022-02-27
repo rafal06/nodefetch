@@ -33,7 +33,7 @@ async function main() {
             deVerCmd = 'plasmashell --version';
             break;
         default:
-            deVerCmd = '';
+            deVerCmd = 'echo';
     }
     // Get DE version
     const deVer = execSync(deVerCmd).toString().replace( /^\D+/g, '').replace(/[\n\r]/g, '');
