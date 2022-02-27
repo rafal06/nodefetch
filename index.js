@@ -8,6 +8,7 @@ async function main() {
     const username = os.userInfo().username;
     const hostname = os.hostname();
     const osInfo = await systeminfo.osInfo();
+    const osVersion = osInfo.release === 'rolling' ? '' : osInfo.release;
 
     // Get hardware info
     const cpuInfo = await systeminfo.cpu();
@@ -52,7 +53,7 @@ async function main() {
     // Print the fetch
     console.log(asciiLogoLines[0] + `${username}@${hostname}`);
     console.log(asciiLogoLines[1] + separator);
-    console.log(asciiLogoLines[2] + `${osInfo.distro} ${osInfo.release}`);
+    console.log(asciiLogoLines[2] + `${osInfo.distro} ${osVersion}`);
     console.log(asciiLogoLines[3] + osInfo.kernel);
     console.log(asciiLogoLines[4] + `${de} ${deVer}`);
     console.log(asciiLogoLines[5] + cpuInfo.brand);
