@@ -33,11 +33,14 @@ async function main() {
         case 'KDE':
             deVerCmd = 'plasmashell --version';
             break;
+        case 'i3':
+            deVerCmd = 'i3 --version';
+            break;
         default:
             deVerCmd = 'echo';
     }
     // Get DE version
-    const deVer = execSync(deVerCmd).toString().replace( /^\D+/g, '').replace(/[\n\r]/g, '');
+    const deVer = execSync(deVerCmd).toString().replace( /^\D+/g, '').replace(/[\n\r]/g, '').replace('3 ', '').replace(' © 2009 Michael Stapelberg and contributors', '');
 
     // Get the ascii logo
     // Look for the files in ascii dir
