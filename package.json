@@ -15,7 +15,11 @@
     "neofetch"
   ],
   "author": "Rafał Baran",
-  "license": "GPL3",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafal06/nodefetch"
+  },
   "dependencies": {
     "systeminformation": "^5.11.4"
   }
