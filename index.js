@@ -14,7 +14,9 @@ async function main() {
     const cpuInfo = await systeminfo.cpu();
     const gpuInfo = await systeminfo.graphics();
     const memory = Math.round((os.totalmem - os.freemem) / 1048576 ) + 'M/' + Math.round(os.totalmem / 1048576) + 'M';
-    let gpuName
+
+    // Get GPU model
+    let gpuName;
     if(gpuInfo.controllers[0].name !== undefined) {
         gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '');
     } else {
