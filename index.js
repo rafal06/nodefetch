@@ -13,8 +13,13 @@ async function main() {
     // Get hardware info
     const cpuInfo = await systeminfo.cpu();
     const gpuInfo = await systeminfo.graphics();
-    const gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '').replace('AMD ', '');
     const memory = Math.round((os.totalmem - os.freemem) / 1048576 ) + 'M/' + Math.round(os.totalmem / 1048576) + 'M';
+    let gpuName
+    if(gpuInfo.controllers[0].name !== undefined) {
+        gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '');
+    } else {
+        gpuName = gpuInfo.controllers[0].model;
+    }
 
     // Generate separator based on the length of username@hostname
     let separator = '';
