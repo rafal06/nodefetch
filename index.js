@@ -32,7 +32,8 @@ async function main() {
     }
 
     // Get DE name
-    const de = process.env.XDG_CURRENT_DESKTOP;
+    let de = process.env.XDG_CURRENT_DESKTOP;
+    if(de === undefined) de = 'No Desktop Env.';
     // Determine DE version checking command
     let deVerCmd;
     switch(de) {
