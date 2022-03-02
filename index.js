@@ -17,7 +17,9 @@ async function main() {
 
     // Get GPU model
     let gpuName;
-    if(gpuInfo.controllers[0].name !== undefined) {
+    if(gpuInfo.controllers[0] === undefined) {
+        gpuName = 'Unknown GPU';
+    } else if(gpuInfo.controllers[0].name !== undefined) {
         gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '');
     } else {
         gpuName = gpuInfo.controllers[0].model;
@@ -28,9 +30,8 @@ async function main() {
     for(let i = 0; i < username.length + hostname.length + 1; i++) {
         separator += '-';
     }
-
     // Get DE name
-    const de = process.env.XDG_CURRENT_DESKTOP;
+    let de = process.env.XDG_CURRENT_DESKTOP;
     // Determine DE version checking command
     let deVerCmd;
     switch(de) {
@@ -41,10 +42,17 @@ async function main() {
             deVerCmd = 'plasmashell --version';
             break;
         default:
-            deVerCmd = 'echo';
+            let ps = execSync('ps x').toString();
+            if(ps.includes('i3')) {
+                de = 'i3';
+                deVerCmd = 'i3 --version';
+            } else {
+                de = 'Cannot detect supported DE/WM';
+                deVerCmd = 'echo';
+            }
     }
     // Get DE version
-    const deVer = execSync(deVerCmd).toString().replace( /^\D+/g, '').replace(/[\n\r]/g, '');
+    const deVer = execSync(deVerCmd).toString().replace( /^\D+/g, '').replace(/[\n\r]/g, '').replace('3 version ','').replace(' © 2009 Michael Stapelberg and contributors','');
 
     // Get the ascii logo
     // Look for the files in ascii dir
