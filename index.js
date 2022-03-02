@@ -17,7 +17,9 @@ async function main() {
 
     // Get GPU model
     let gpuName;
-    if(gpuInfo.controllers[0].name !== undefined) {
+    if(gpuInfo.controllers[0] === undefined) {
+        gpuName = 'Unknown/no GPU';
+    } else if(gpuInfo.controllers[0].name !== undefined) {
         gpuName = gpuInfo.controllers[0].name.replace('NVIDIA ', '');
     } else {
         gpuName = gpuInfo.controllers[0].model;
