@@ -42,6 +42,7 @@ async function main() {
             deVerCmd = 'plasmashell --version';
             break;
         default:
+            // Determinine DE/WM, by checking processes
             let ps = execSync('ps x').toString();
             if(ps.includes('i3')) {
                 de = 'i3';
