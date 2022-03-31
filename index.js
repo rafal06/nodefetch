@@ -61,17 +61,23 @@ async function main() {
     const asciiLogoLines = asciiLogo.split(/\r?\n/);
 
     // Print the fetch
-    console.log(asciiLogoLines[0] + `${username}@${hostname}`);
-    console.log(asciiLogoLines[1] + separator);
-    console.log(asciiLogoLines[2] + `${osInfo.distro} ${osVersion}`);
-    console.log(asciiLogoLines[3] + osInfo.kernel);
-    console.log(asciiLogoLines[4] + `${de} ${deVer}`);
-    console.log(asciiLogoLines[5] + cpuInfo.brand);
-    console.log(asciiLogoLines[6] + gpuName);
-    console.log(asciiLogoLines[7] + memory);
+    const info = [
+        `${username}@${hostname}`,
+        separator,
+        `${osInfo.distro} ${osVersion}`,
+        osInfo.kernel,
+        `${de} ${deVer}`,
+        cpuInfo.brand,
+        gpuName,
+        memory,
+    ];
+
+    for(const index in info) {
+        console.log(asciiLogoLines[index] + info[index]);
+    }
 
     // Print the rest of the ascii
-    for(let i = 8; i < asciiLogoLines.length - 1; i++) {
+    for(let i = info.length; i < asciiLogoLines.length - 1; i++) {
         console.log(asciiLogoLines[i]);
     }
 }
